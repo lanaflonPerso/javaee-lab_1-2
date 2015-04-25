@@ -22,7 +22,7 @@ public class MysqlCarDAO implements CarDAO {
         try {
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new DBException("Can't connect to the DB");
         }
         return connection;
     }
@@ -41,11 +41,11 @@ public class MysqlCarDAO implements CarDAO {
 
             int res = pStatement.executeUpdate();
             if (res == 0) {
-                // add trowing exception
+                throw new DBException("Nothing was created");
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new DBException("Can't insert data to the DB");
         } finally {
             closeResources();
         }
@@ -71,7 +71,7 @@ public class MysqlCarDAO implements CarDAO {
             car = new Car(id, brand, model, year, price, speed);
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new DBException("Can't read data from the DB");
         } finally {
             closeResources();
         }
@@ -94,11 +94,11 @@ public class MysqlCarDAO implements CarDAO {
 
             int res = pStatement.executeUpdate();
             if (res == 0) {
-                // add trowing exception
+                throw new DBException("Nothing was updated");
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new DBException("Can't update data in the DB");
         } finally {
             closeResources();
         }
@@ -122,11 +122,11 @@ public class MysqlCarDAO implements CarDAO {
 
             int res = pStatement.executeUpdate();
             if (res == 0) {
-                // add trowing exception
+                throw new DBException("Nothing was deleted");
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new DBException("Can't delete data from the DB");
         } finally {
             closeResources();
         }
@@ -152,7 +152,7 @@ public class MysqlCarDAO implements CarDAO {
                 cars.add(car);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new DBException("Can't read data from the DB");
         } finally {
             closeResources();
         }
@@ -164,7 +164,7 @@ public class MysqlCarDAO implements CarDAO {
             connection.close();
             pStatement.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new DBException("Can't close resources after work with the DB");
         }
     }
 }
