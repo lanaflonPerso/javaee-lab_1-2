@@ -44,9 +44,9 @@ public class Tests {
         int sizeBefore = dao.getAll().size();
         Car car1 = new Car("Honda", "AccordMultiple", new java.sql.Date(sdf.parse("2001").getTime()), 101, 201);
         dao.create(car1);
-        Car car2 = new Car("Honda", "AccordMultiple", new java.sql.Date(sdf.parse("2002").getTime()), 102, 202);
+        Car car2 = new Car("Mazda", "AccordMultiple", new java.sql.Date(sdf.parse("2002").getTime()), 102, 202);
         dao.create(car2);
-        Car car3 = new Car("Honda", "AccordMultiple", new java.sql.Date(sdf.parse("2003").getTime()), 103, 203);
+        Car car3 = new Car("Nissan", "AccordMultiple", new java.sql.Date(sdf.parse("2003").getTime()), 103, 203);
         dao.create(car3);
         int sizeAfter = dao.getAll().size();
         assertEquals(sizeBefore+3, sizeAfter);
@@ -64,6 +64,11 @@ public class Tests {
         assertEquals(car1, car2);
         // remove all cars added through tests
         dao.delete(car1);
+    }
+
+    @Test(expected = DBException.class)
+    public void readNonexistentCar() throws ParseException {
+        Car car2 = dao.read(-20);
     }
 
     @Test
@@ -98,6 +103,12 @@ public class Tests {
         int sizeAfter = dao.getAll().size();
 
         assertEquals(sizeBefore-1, sizeAfter);
+    }
+
+    @Test(expected = DBException.class)
+    public void deleteNonexistentCar() throws ParseException {
+        Car car = new Car("MyBrand", "MyModel", sdf.parse("2000"), 120, 230);
+        dao.delete(car);
     }
 
     @Test(expected = DBException.class)
