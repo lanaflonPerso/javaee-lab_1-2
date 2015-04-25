@@ -76,4 +76,30 @@ public class Car {
     public void setSpeed(float speed) {
         this.speed = speed;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Car car = (Car) o;
+
+        if (Float.compare(car.price, price) != 0) return false;
+        if (Float.compare(car.speed, speed) != 0) return false;
+        if (!brand.equals(car.brand)) return false;
+        if (!model.equals(car.model)) return false;
+        if (!year.equals(car.year)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = brand.hashCode();
+        result = 31 * result + model.hashCode();
+        result = 31 * result + year.hashCode();
+        result = 31 * result + (price != +0.0f ? Float.floatToIntBits(price) : 0);
+        result = 31 * result + (speed != +0.0f ? Float.floatToIntBits(speed) : 0);
+        return result;
+    }
 }
