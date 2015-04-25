@@ -83,7 +83,7 @@ public class MysqlCarDAO implements CarDAO {
     public void update(Car car) {
         try {
             connection = getConnection();
-            pStatement = connection.prepareStatement("UPDATE car SET brand=?, model=?, \"year\"=?, price=?, speed=? " +
+            pStatement = connection.prepareStatement("UPDATE car SET brand=?, model=?, year=?, price=?, speed=? " +
                     "WHERE id=?");
             pStatement.setString(1, car.getBrand());
             pStatement.setString(2, car.getModel());
@@ -104,6 +104,7 @@ public class MysqlCarDAO implements CarDAO {
         }
     }
 
+    @SuppressWarnings("JpaQueryApiInspection")
     @Override
     public void delete(Car car) {
         try {
@@ -112,7 +113,7 @@ public class MysqlCarDAO implements CarDAO {
                 pStatement = connection.prepareStatement("DELETE FROM car WHERE id=?");
                 pStatement.setInt(1, car.getId());
             } else {
-                pStatement = connection.prepareStatement("DELETE FROM car WHERE brand=? AND model=? AND \"year\"=? AND price=? AND speed=? ");
+                pStatement = connection.prepareStatement("DELETE FROM car WHERE brand=? AND model=? AND year=? AND price=? AND speed=? ");
                 pStatement.setString(1, car.getBrand());
                 pStatement.setString(2, car.getModel());
                 pStatement.setDate(3, new java.sql.Date(car.getYear().getTime()));
