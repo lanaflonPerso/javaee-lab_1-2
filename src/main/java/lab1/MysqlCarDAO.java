@@ -31,7 +31,7 @@ public class MysqlCarDAO implements CarDAO {
     public void create(Car car) {
         try {
             connection = getConnection();
-            pStatement = connection.prepareStatement("INSERT INTO car(brand, model, \"year\", price, speed) " +
+            pStatement = connection.prepareStatement("INSERT INTO car(brand, model, year, price, speed) " +
                     "VALUES(?, ?, ?, ?, ?)");
             pStatement.setString(1, car.getBrand());
             pStatement.setString(2, car.getModel());
