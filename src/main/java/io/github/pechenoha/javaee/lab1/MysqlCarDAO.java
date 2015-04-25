@@ -121,7 +121,35 @@ public class MysqlCarDAO implements CarDAO {
 
     @Override
     public void delete(Car car) {
+        try {
+            connection = getConnection();
+            if (car.getId() != 0) {
+                pStatement = connection.prepareStatement("DELETE FROM car WHERE id=?");
+                pStatement.setInt(1, car.getId());
+            } else {
+                pStatement = connection.prepareStatement("DELETE FROM car WHERE brand=?, model=?, \"year\"=?, price=?, speed=? ");
+                pStatement.setString(1, car.getBrand());
+                pStatement.setString(2, car.getModel());
+                pStatement.setDate(3, car.getYear());
+                pStatement.setFloat(4, car.getPrice());
+                pStatement.setFloat(5, car.getSpeed());
+            }
 
+            int res = pStatement.executeUpdate();
+            if (res == 0) {
+                // add trowing exception
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+                pStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
