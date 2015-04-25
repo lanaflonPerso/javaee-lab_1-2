@@ -1,6 +1,6 @@
 package lab1;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * Car model
