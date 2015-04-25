@@ -35,7 +35,7 @@ public class MysqlCarDAO implements CarDAO {
                     "VALUES(?, ?, ?, ?, ?)");
             pStatement.setString(1, car.getBrand());
             pStatement.setString(2, car.getModel());
-            pStatement.setDate(3, car.getYear());
+            pStatement.setDate(3, new java.sql.Date(car.getYear().getTime()));
             pStatement.setFloat(4, car.getPrice());
             pStatement.setFloat(5, car.getSpeed());
 
@@ -64,7 +64,7 @@ public class MysqlCarDAO implements CarDAO {
 
             String brand = rs.getString("brand");
             String model = rs.getString("model");
-            Date year = rs.getDate("year");
+            java.util.Date year = rs.getDate("year");
             float price = rs.getFloat("price");
             float speed = rs.getFloat("speed");
 
@@ -87,7 +87,7 @@ public class MysqlCarDAO implements CarDAO {
                     "WHERE id=?");
             pStatement.setString(1, car.getBrand());
             pStatement.setString(2, car.getModel());
-            pStatement.setDate(3, car.getYear());
+            pStatement.setDate(3, new java.sql.Date(car.getYear().getTime()));
             pStatement.setFloat(4, car.getPrice());
             pStatement.setFloat(5, car.getSpeed());
             pStatement.setInt(6, car.getId());
@@ -115,7 +115,7 @@ public class MysqlCarDAO implements CarDAO {
                 pStatement = connection.prepareStatement("DELETE FROM car WHERE brand=? AND model=? AND \"year\"=? AND price=? AND speed=? ");
                 pStatement.setString(1, car.getBrand());
                 pStatement.setString(2, car.getModel());
-                pStatement.setDate(3, car.getYear());
+                pStatement.setDate(3, new java.sql.Date(car.getYear().getTime()));
                 pStatement.setFloat(4, car.getPrice());
                 pStatement.setFloat(5, car.getSpeed());
             }
@@ -144,7 +144,7 @@ public class MysqlCarDAO implements CarDAO {
                 int id = rs.getInt("id");
                 String brand = rs.getString("brand");
                 String model = rs.getString("model");
-                Date year = rs.getDate("year");
+                java.util.Date year = rs.getDate("year");
                 float price = rs.getFloat("price");
                 float speed = rs.getFloat("speed");
 
