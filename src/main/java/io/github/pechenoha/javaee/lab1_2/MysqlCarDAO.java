@@ -35,8 +35,8 @@ public class MysqlCarDAO implements CarDAO {
             pStatement.setString(1, car.getBrand());
             pStatement.setString(2, car.getModel());
             pStatement.setDate(3, car.getYear());
-            pStatement.setFloat(1, car.getPrice());
-            pStatement.setFloat(1, car.getSpeed());
+            pStatement.setFloat(4, car.getPrice());
+            pStatement.setFloat(5, car.getSpeed());
 
             int res = pStatement.executeUpdate();
             if (res == 0) {
@@ -90,7 +90,32 @@ public class MysqlCarDAO implements CarDAO {
 
     @Override
     public void update(Car car) {
+        try {
+            connection = getConnection();
+            pStatement = connection.prepareStatement("UPDATE car SET brand=?, model=?, \"year\"=?, price=?, speed=? " +
+                    "WHERE id=?");
+            pStatement.setString(1, car.getBrand());
+            pStatement.setString(2, car.getModel());
+            pStatement.setDate(3, car.getYear());
+            pStatement.setFloat(4, car.getPrice());
+            pStatement.setFloat(5, car.getSpeed());
+            pStatement.setInt(6, car.getId());
 
+            int res = pStatement.executeUpdate();
+            if (res == 0) {
+                // add trowing exception
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+                pStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
