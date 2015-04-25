@@ -86,5 +86,32 @@ public class Tests {
         dao.delete(car1);
     }
 
+    @Test
+    public void deleteCar() throws ParseException {
+        // create car and add it to the DB
+        Car car1 = new Car("CCCCCCCCCC", "DDDD", sdf.parse("2001"), 170, 310);
+        dao.create(car1);
 
+        int sizeBefore = dao.getAll().size();
+        // remove it from the DB
+        dao.delete(car1);
+        int sizeAfter = dao.getAll().size();
+
+        assertEquals(sizeBefore-1, sizeAfter);
+    }
+
+    @Test(expected = DBException.class)
+    public void deleteCarAndTryToGetItAfterRemoval() throws ParseException {
+        // create car and add it to the DB
+        Car car1 = new Car("CCCCCCCCCC", "DDDD", sdf.parse("2001"), 170, 310);
+        dao.create(car1);
+
+        int sizeBefore = dao.getAll().size();
+        // remove it from the DB
+        dao.delete(car1);
+        int sizeAfter = dao.getAll().size();
+
+        // there is no such object in the DB, expection should occur
+        Car car2 = dao.read(car1.getId());
+    }
 }
