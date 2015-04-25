@@ -25,7 +25,7 @@ public class Car {
     public Car(String brand, String model, Date year, float price, float speed) {
         this.brand = brand;
         this.model = model;
-        this.year = year;
+        this.year  = year;
         this.price = price;
         this.speed = speed;
     }
@@ -54,6 +54,9 @@ public class Car {
         return speed;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
     public void setBrand(String brand) {
         this.brand = brand;
     }
