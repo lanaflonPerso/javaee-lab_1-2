@@ -56,4 +56,15 @@ public class Tests {
         dao.delete(car3);
     }
 
+    @Test
+    public void readCar() throws ParseException {
+        Car car1 = new Car("AAAAAA", "AAAA", sdf.parse("2009"), 120, 230);
+        dao.create(car1);
+        Car car2 = dao.read(car1.getId());
+        assertEquals(car1, car2);
+        // remove all cars added through tests
+        dao.delete(car1);
+    }
+
+
 }
