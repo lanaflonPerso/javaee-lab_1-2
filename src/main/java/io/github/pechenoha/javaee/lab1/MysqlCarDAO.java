@@ -47,12 +47,7 @@ public class MysqlCarDAO implements CarDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            try {
-                connection.close();
-                pStatement.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            closeResources();
         }
     }
 
@@ -78,12 +73,7 @@ public class MysqlCarDAO implements CarDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            try {
-                connection.close();
-                pStatement.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            closeResources();
         }
 
         return car;
@@ -110,12 +100,7 @@ public class MysqlCarDAO implements CarDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            try {
-                connection.close();
-                pStatement.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            closeResources();
         }
     }
 
@@ -127,7 +112,7 @@ public class MysqlCarDAO implements CarDAO {
                 pStatement = connection.prepareStatement("DELETE FROM car WHERE id=?");
                 pStatement.setInt(1, car.getId());
             } else {
-                pStatement = connection.prepareStatement("DELETE FROM car WHERE brand=?, model=?, \"year\"=?, price=?, speed=? ");
+                pStatement = connection.prepareStatement("DELETE FROM car WHERE brand=? AND model=? AND \"year\"=? AND price=? AND speed=? ");
                 pStatement.setString(1, car.getBrand());
                 pStatement.setString(2, car.getModel());
                 pStatement.setDate(3, car.getYear());
@@ -143,12 +128,7 @@ public class MysqlCarDAO implements CarDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            try {
-                connection.close();
-                pStatement.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            closeResources();
         }
     }
 
@@ -174,13 +154,17 @@ public class MysqlCarDAO implements CarDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            try {
-                connection.close();
-                pStatement.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            closeResources();
         }
         return cars;
+    }
+
+    private void closeResources() {
+        try {
+            connection.close();
+            pStatement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
