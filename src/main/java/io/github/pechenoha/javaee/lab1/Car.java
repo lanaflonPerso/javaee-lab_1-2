@@ -1,4 +1,4 @@
-package io.github.pechenoha.javaee.lab1_2;
+package io.github.pechenoha.javaee.lab1;
 
 import java.sql.Date;
 
@@ -15,6 +15,14 @@ public class Car {
 
     public Car(int id, String brand, String model, Date year, float price, float speed) {
         this.id = id;
+        this.brand = brand;
+        this.model = model;
+        this.year = year;
+        this.price = price;
+        this.speed = speed;
+    }
+
+    public Car(String brand, String model, Date year, float price, float speed) {
         this.brand = brand;
         this.model = model;
         this.year = year;

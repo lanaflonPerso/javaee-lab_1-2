@@ -1,4 +1,4 @@
-package io.github.pechenoha.javaee.lab1_2;
+package io.github.pechenoha.javaee.lab1;
 
 import java.util.List;
 
