@@ -32,7 +32,7 @@ public class MysqlCarDAO implements CarDAO {
         try {
             connection = getConnection();
             pStatement = connection.prepareStatement("INSERT INTO car(brand, model, year, price, speed) " +
-                    "VALUES(?, ?, ?, ?, ?)");
+                    "VALUES(?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             pStatement.setString(1, car.getBrand());
             pStatement.setString(2, car.getModel());
             pStatement.setDate(3, new java.sql.Date(car.getYear().getTime()));
@@ -42,6 +42,15 @@ public class MysqlCarDAO implements CarDAO {
             int res = pStatement.executeUpdate();
             if (res == 0) {
                 throw new DBException("Nothing was created");
+            }
+
+            try (ResultSet generatedKeys = pStatement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    car.setId(generatedKeys.getInt(1));
+                }
+                else {
+                    throw new SQLException("Creating user failed, no ID obtained.");
+                }
             }
 
         } catch (SQLException e) {
