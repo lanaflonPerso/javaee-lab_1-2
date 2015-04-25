@@ -118,10 +118,8 @@ public class MysqlCarDAO implements CarDAO {
     public void delete(Car car) {
         try {
             connection = getConnection();
-            if (car.getId() != 0) {
-                pStatement = connection.prepareStatement("DELETE FROM car WHERE id=?");
-                pStatement.setInt(1, car.getId());
-            }
+            pStatement = connection.prepareStatement("DELETE FROM car WHERE id=?");
+            pStatement.setInt(1, car.getId());
 
             int res = pStatement.executeUpdate();
             if (res == 0) {
