@@ -1,6 +1,7 @@
 package io.github.pechenoha.javaee.lab1_2;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -125,6 +126,33 @@ public class MysqlCarDAO implements CarDAO {
 
     @Override
     public List<Car> getAll() {
-        return null;
+        List<Car> cars = new ArrayList<>();
+        try {
+            connection = getConnection();
+            pStatement = connection.prepareStatement("SELECT * FROM car");
+            rs = pStatement.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String brand = rs.getString("brand");
+                String model = rs.getString("model");
+                Date year = rs.getDate("year");
+                float price = rs.getFloat("price");
+                float speed = rs.getFloat("speed");
+
+                Car car = new Car(id, brand, model, year, price, speed);
+                cars.add(car);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+                pStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return cars;
     }
 }
