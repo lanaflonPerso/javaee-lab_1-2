@@ -31,7 +31,7 @@ public class Tests {
     @Test
     public void createNewCar() throws ParseException {
         int sizeBefore = dao.getAll().size();
-        Car car = new Car("Honda", "Accord", new java.sql.Date(sdf.parse("2009").getTime()), 120, 230);
+        Car car = new Car("Honda", "Accord", sdf.parse("2009"), 120, 230);
         dao.create(car);
         int sizeAfter = dao.getAll().size();
         assertEquals(sizeBefore+1, sizeAfter);
@@ -42,11 +42,11 @@ public class Tests {
     @Test
     public void createMultipleCars() throws ParseException {
         int sizeBefore = dao.getAll().size();
-        Car car1 = new Car("Honda", "AccordMultiple", new java.sql.Date(sdf.parse("2001").getTime()), 101, 201);
+        Car car1 = new Car("Honda", "AccordMultiple", sdf.parse("2001"), 101, 201);
         dao.create(car1);
-        Car car2 = new Car("Mazda", "AccordMultiple", new java.sql.Date(sdf.parse("2002").getTime()), 102, 202);
+        Car car2 = new Car("Mazda", "AccordMultiple", sdf.parse("2002"), 102, 202);
         dao.create(car2);
-        Car car3 = new Car("Nissan", "AccordMultiple", new java.sql.Date(sdf.parse("2003").getTime()), 103, 203);
+        Car car3 = new Car("Nissan", "AccordMultiple", sdf.parse("2003"), 103, 203);
         dao.create(car3);
         int sizeAfter = dao.getAll().size();
         assertEquals(sizeBefore+3, sizeAfter);
