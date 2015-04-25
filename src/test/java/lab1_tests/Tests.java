@@ -35,6 +35,25 @@ public class Tests {
         dao.create(car);
         int sizeAfter = dao.getAll().size();
         assertEquals(sizeBefore+1, sizeAfter);
+        // remove all cars added through tests
+        dao.delete(car);
+    }
+
+    @Test
+    public void createMultipleCars() throws ParseException {
+        int sizeBefore = dao.getAll().size();
+        Car car1 = new Car("Honda", "AccordMultiple", new java.sql.Date(sdf.parse("2001").getTime()), 101, 201);
+        dao.create(car1);
+        Car car2 = new Car("Honda", "AccordMultiple", new java.sql.Date(sdf.parse("2002").getTime()), 102, 202);
+        dao.create(car2);
+        Car car3 = new Car("Honda", "AccordMultiple", new java.sql.Date(sdf.parse("2003").getTime()), 103, 203);
+        dao.create(car3);
+        int sizeAfter = dao.getAll().size();
+        assertEquals(sizeBefore+3, sizeAfter);
+        // remove all cars added through tests
+        dao.delete(car1);
+        dao.delete(car2);
+        dao.delete(car3);
     }
 
 }
