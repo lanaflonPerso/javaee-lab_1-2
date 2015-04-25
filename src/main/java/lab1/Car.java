@@ -1,4 +1,4 @@
-package io.github.pechenoha.javaee.lab1;
+package lab1;
 
 import java.sql.Date;
 

@@ -1,4 +1,4 @@
-package io.github.pechenoha.javaee.lab1;
+package lab1;
 
 public class DBException extends RuntimeException {
     public DBException() {
