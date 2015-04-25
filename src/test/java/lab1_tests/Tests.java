@@ -66,5 +66,25 @@ public class Tests {
         dao.delete(car1);
     }
 
+    @Test
+    public void updateCar() throws ParseException {
+        // create car and add it to the DB
+        Car car1 = new Car("BBBBBB", "BB", sdf.parse("2001"), 170, 310);
+        dao.create(car1);
+
+        // update it
+        car1.setSpeed(299);
+        dao.update(car1);
+
+        // read updated entity from DB
+        Car car2 = dao.read(car1.getId());
+
+        // and compare it to the old one
+        assertEquals(car1, car2);
+
+        // remove all cars added through tests
+        dao.delete(car1);
+    }
+
 
 }
