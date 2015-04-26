@@ -3,8 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title>JavaEE lab2 - Servlets/JSP</title>
+    <meta name="author" content="Vadym Pechenoha">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="/" class="navbar-brand">Rent Car</a>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="/cars">Car List</a>
+                </li>
+                <li>
+                    <a href="/cars/add">Add New Car</a>
+                </li>
+            </ul>
 
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">About</a></li>
+                <li><a href="#">Help</a></li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+<div class="container main_container">
+    <div class="text-center">
+        <img src="img/car_left.png" class="car_left">
+        <img src="img/car_right.png">
+    </div>
+    <h1 class="text-center">Nice Cars for Rent</h1>
+    <div class="txt">
+        Hi! Here's my lab <strong>work#2</strong> of JavaEE.<br>
+        You can easily get all cars available at the resource, or add new one.<br>
+        A bit later ability to add new cars will be accessible only for <strong>admin</strong>.
+    </div>
+    <div class="buttons_mainpage text-center">
+        <a href="#" class="btn btn-info left_btn">List of all available cars</a>
+        <a href="#" class="btn btn-success">Add new car</a>
+    </div>
+</div>
 </body>
 </html>

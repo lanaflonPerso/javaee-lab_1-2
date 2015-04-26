@@ -1,0 +1,15 @@
+.main_container {
+    margin-top: 60px;
+}
+.car_left {
+    margin-right: 100px;
+}
+.txt {
+    font-size: 20px;
+}
+.buttons_mainpage {
+    padding-top: 50px;
+}
+.buttons_mainpage .left_btn {
+    margin-right: 20px;
+}
