@@ -20,9 +20,12 @@ public class MysqlCarDAO implements CarDAO {
 
     private Connection getConnection() {
         try {
+            Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
         } catch (SQLException e) {
             throw new DBException("Can't connect to the DB");
+        } catch (ClassNotFoundException e) {
+            throw new DBException("Can't load driver for MySQL");
         }
         return connection;
     }
@@ -162,8 +165,10 @@ public class MysqlCarDAO implements CarDAO {
 
     private void closeResources() {
         try {
-            connection.close();
-            pStatement.close();
+            if (connection != null)
+                connection.close();
+            if (pStatement != null)
+                pStatement.close();
         } catch (SQLException e) {
             throw new DBException("Can't close resources after work with the DB");
         }
