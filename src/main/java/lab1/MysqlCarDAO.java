@@ -22,9 +22,9 @@ public class MysqlCarDAO implements CarDAO {
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
         } catch (SQLException e) {
-            throw new DBException("Can't connect to the DB");
+            throw new DBException(e);
         } catch (ClassNotFoundException e) {
-            throw new DBException("Can't load driver for MySQL");
+            throw new DBException(e);
         }
         return connection;
     }
@@ -62,7 +62,7 @@ public class MysqlCarDAO implements CarDAO {
             }
 
         } catch (SQLException e) {
-            throw new DBException("Can't insert data to the DB");
+            throw new DBException(e);
         } finally {
             closeResources(connection, pStatement);
         }
@@ -91,7 +91,7 @@ public class MysqlCarDAO implements CarDAO {
             car = new Car(id, brand, model, year, price, speed);
 
         } catch (SQLException e) {
-            throw new DBException("Can't read data from the DB");
+            throw new DBException(e);
         } finally {
             closeResources(connection, pStatement);
         }
@@ -121,7 +121,7 @@ public class MysqlCarDAO implements CarDAO {
             }
 
         } catch (SQLException e) {
-            throw new DBException("Can't update data in the DB");
+            throw new DBException(e);
         } finally {
             closeResources(connection, pStatement);
         }
@@ -144,7 +144,7 @@ public class MysqlCarDAO implements CarDAO {
             }
 
         } catch (SQLException e) {
-            throw new DBException("Can't delete data from the DB");
+            throw new DBException(e);
         } finally {
             closeResources(connection, pStatement);
         }
@@ -173,7 +173,7 @@ public class MysqlCarDAO implements CarDAO {
                 cars.add(car);
             }
         } catch (SQLException e) {
-            throw new DBException("Can't read data from the DB");
+            throw new DBException(e);
         } finally {
             closeResources(connection, pStatement);
         }
@@ -187,7 +187,7 @@ public class MysqlCarDAO implements CarDAO {
             if (pStatement != null)
                 pStatement.close();
         } catch (SQLException e) {
-            throw new DBException("Can't close resources after work with the DB");
+            throw new DBException(e);
         }
     }
 }
