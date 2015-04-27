@@ -14,11 +14,10 @@ public class MysqlCarDAO implements CarDAO {
     private final String USERNAME = "root";
     private final String PASSWORD = "11111111";
 
-    private Connection connection;
-    private PreparedStatement pStatement;
     private ResultSet rs;
 
     private Connection getConnection() {
+        Connection connection;
         try {
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
@@ -32,6 +31,9 @@ public class MysqlCarDAO implements CarDAO {
 
     @Override
     public void create(Car car) {
+        Connection connection = null;
+        PreparedStatement pStatement = null;
+
         try {
             connection = getConnection();
             pStatement = connection.prepareStatement("INSERT INTO car(brand, model, year, price, speed) " +
@@ -62,12 +64,15 @@ public class MysqlCarDAO implements CarDAO {
         } catch (SQLException e) {
             throw new DBException("Can't insert data to the DB");
         } finally {
-            closeResources();
+            closeResources(connection, pStatement);
         }
     }
 
     @Override
     public Car read(int id) {
+        Connection connection = null;
+        PreparedStatement pStatement = null;
+
         Car car = null;
         String sql = "SELECT * FROM car WHERE id=?";
         try {
@@ -88,7 +93,7 @@ public class MysqlCarDAO implements CarDAO {
         } catch (SQLException e) {
             throw new DBException("Can't read data from the DB");
         } finally {
-            closeResources();
+            closeResources(connection, pStatement);
         }
 
         return car;
@@ -96,6 +101,9 @@ public class MysqlCarDAO implements CarDAO {
 
     @Override
     public void update(Car car) {
+        Connection connection = null;
+        PreparedStatement pStatement = null;
+
         try {
             connection = getConnection();
             pStatement = connection.prepareStatement("UPDATE car SET brand=?, model=?, year=?, price=?, speed=? " +
@@ -115,13 +123,16 @@ public class MysqlCarDAO implements CarDAO {
         } catch (SQLException e) {
             throw new DBException("Can't update data in the DB");
         } finally {
-            closeResources();
+            closeResources(connection, pStatement);
         }
     }
 
     @SuppressWarnings("JpaQueryApiInspection")
     @Override
     public void delete(Car car) {
+        Connection connection = null;
+        PreparedStatement pStatement = null;
+
         try {
             connection = getConnection();
             pStatement = connection.prepareStatement("DELETE FROM car WHERE id=?");
@@ -135,13 +146,16 @@ public class MysqlCarDAO implements CarDAO {
         } catch (SQLException e) {
             throw new DBException("Can't delete data from the DB");
         } finally {
-            closeResources();
+            closeResources(connection, pStatement);
         }
     }
 
     @Override
     public List<Car> getAll() {
+        Connection connection = null;
+        PreparedStatement pStatement = null;
         List<Car> cars = new ArrayList<>();
+
         try {
             connection = getConnection();
             pStatement = connection.prepareStatement("SELECT * FROM car");
@@ -161,12 +175,12 @@ public class MysqlCarDAO implements CarDAO {
         } catch (SQLException e) {
             throw new DBException("Can't read data from the DB");
         } finally {
-            closeResources();
+            closeResources(connection, pStatement);
         }
         return cars;
     }
 
-    private void closeResources() {
+    private void closeResources(Connection connection, PreparedStatement pStatement) {
         try {
             if (connection != null)
                 connection.close();
