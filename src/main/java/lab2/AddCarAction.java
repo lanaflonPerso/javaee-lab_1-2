@@ -15,7 +15,7 @@ import java.util.Date;
 
 public class AddCarAction extends HttpServlet {
 
-    CarDAO carDao = new MysqlCarDAO();
+    private CarDAO carDao = new MysqlCarDAO();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
