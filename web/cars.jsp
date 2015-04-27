@@ -36,9 +36,6 @@
     </div>
 </div>
 <div class="container main_container">
-    <c:if test="${param.car_added != null}">
-
-    </c:if>
     <c:choose>
         <c:when test="${param.car_added != null}">
             <div class="alert alert-dismissible alert-info car_operation_messagebox">
