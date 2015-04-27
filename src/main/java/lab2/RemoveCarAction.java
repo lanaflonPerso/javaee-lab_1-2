@@ -20,10 +20,10 @@ public class RemoveCarAction extends HttpServlet {
             int id = Integer.parseInt(req.getParameter("id"));
             Car car = carDao.read(id);
             carDao.delete(car);
-            resp.sendRedirect("cars.jsp?car_deleted=true");
+            resp.sendRedirect("cars.jsp?car_removed=true");
 //        } catch (NumberFormatException, DBException e) {
         } catch (Exception e) {
-            resp.sendRedirect("cars.jsp?car_deleted=false");
+            resp.sendRedirect("cars.jsp?car_removed=false");
         }
     }
 }
