@@ -23,7 +23,7 @@
                     <a href="/cars.jsp">Car List</a>
                 </li>
                 <li>
-                    <a href="/cars/add.jsp">Add New Car</a>
+                    <a href="/add_car.jsp">Add New Car</a>
                 </li>
             </ul>
 
