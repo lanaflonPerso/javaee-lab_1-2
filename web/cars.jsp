@@ -79,6 +79,7 @@
                 <th>Year</th>
                 <th>Max Speed</th>
                 <th>Price ($ / day)</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -100,6 +101,7 @@
                 </td>
                 <td><c:out value="${item.speed}" default="-" /></td>
                 <td><c:out value="${item.price}" default="-" /></td>
+                <td><a href="/remove_car_action?id=${item.id}" class="btn btn-danger btn-xs">Remove</a></td>
             </tr>
             </c:forEach>
             </tbody>

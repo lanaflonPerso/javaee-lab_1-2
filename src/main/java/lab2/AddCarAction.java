@@ -24,22 +24,23 @@ public class AddCarAction extends HttpServlet {
 
         String yearString = req.getParameter("year");
         Date year = null;
-        if (!yearString.isEmpty())
-            try {
+        try {
+            if (!yearString.isEmpty())
                 year = new SimpleDateFormat("yyyy").parse(yearString);
-            } catch (ParseException e) {
-            //            e.printStackTrace();
-            }
 
-        String speedString = req.getParameter("speed");
-        Float speed = Float.parseFloat(speedString);
+            String speedString = req.getParameter("speed");
+            Float speed = Float.parseFloat(speedString);
 
-        String priceString = req.getParameter("price");
-        Float price = Float.parseFloat(priceString);
-
-        // create a new car
-        Car car = new Car(brand, model, year, price, speed);
-        carDao.create(car);
-        resp.sendRedirect("cars.jsp?car_added=true");
+            String priceString = req.getParameter("price");
+            Float price = Float.parseFloat(priceString);
+            // create a new car
+            Car car = new Car(brand, model, year, price, speed);
+            carDao.create(car);
+            resp.sendRedirect("cars.jsp?car_added=true");
+        } catch(NumberFormatException e) {
+            resp.sendRedirect("add_car.jsp?error=true");
+        }  catch(ParseException e) {
+            resp.sendRedirect("add_car.jsp?error=true");
+        }
     }
 }

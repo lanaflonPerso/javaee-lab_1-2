@@ -37,6 +37,15 @@
 </div>
 <div class="container main_container">
     <h1 class="text-center">Add a new Car</h1>
+    <c:choose>
+        <c:when test="${param.error == 'true'}">
+            <div class="alert alert-dismissible alert-danger car_operation_messagebox">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong>Incorrect input!</strong>
+                Please check your data and try to add the car again.
+            </div>
+        </c:when>
+    </c:choose>
     <div class="txt">
         <form class="form-horizontal" method="post" action="add_car_action">
             <fieldset>
