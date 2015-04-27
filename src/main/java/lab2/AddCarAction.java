@@ -41,6 +41,6 @@ public class AddCarAction extends HttpServlet {
         // create a new car
         Car car = new Car(brand, model, year, price, speed);
         carDao.create(car);
-        resp.sendRedirect("cars.jsp");
+        resp.sendRedirect("cars.jsp?car_added=true");
     }
 }
