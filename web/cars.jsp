@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -22,7 +23,7 @@
                     <a href="/cars.jsp">Car List</a>
                 </li>
                 <li>
-                    <a href="/cars/add">Add New Car</a>
+                    <a href="/cars/add.jsp">Add New Car</a>
                 </li>
             </ul>
 
@@ -55,9 +56,19 @@
                 <td>${item.id}</td>
                 <td>${item.brand}</td>
                 <td>${item.model}</td>
-                <td><c:out value="${item.year}" default="unknown" /></td>
-                <td><c:out value="${item.speed}" default="unknown" /></td>
-                <td><c:out value="${item.price}" default="unknown" /></td>
+                <td>
+                    <c:choose>
+                        <c:when test="${item.year != null}">
+                            <c:set var="year" value="${item.year}" />
+                            <fmt:formatDate value="${year}" pattern="yyyy" />
+                        </c:when>
+                        <c:otherwise>
+                            -
+                        </c:otherwise>
+                    </c:choose>
+                </td>
+                <td><c:out value="${item.speed}" default="-" /></td>
+                <td><c:out value="${item.price}" default="-" /></td>
             </tr>
             </c:forEach>
             </tbody>
