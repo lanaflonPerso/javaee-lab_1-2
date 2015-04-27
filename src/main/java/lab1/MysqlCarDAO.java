@@ -38,7 +38,10 @@ public class MysqlCarDAO implements CarDAO {
                     "VALUES(?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             pStatement.setString(1, car.getBrand());
             pStatement.setString(2, car.getModel());
-            pStatement.setDate(3, new java.sql.Date(car.getYear().getTime()));
+            if (car.getYear() != null)
+                pStatement.setDate(3, new java.sql.Date(car.getYear().getTime()));
+            else
+                pStatement.setDate(3, null);
             pStatement.setFloat(4, car.getPrice());
             pStatement.setFloat(5, car.getSpeed());
 
