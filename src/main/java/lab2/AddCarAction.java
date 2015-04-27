@@ -20,7 +20,6 @@ public class AddCarAction extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String brand = req.getParameter("brand");
-        System.out.println(brand);
         String model = req.getParameter("model");
 
         String yearString = req.getParameter("year");
