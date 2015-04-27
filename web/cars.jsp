@@ -37,12 +37,34 @@
 </div>
 <div class="container main_container">
     <c:if test="${param.car_added != null}">
-        <div class="alert alert-dismissible alert-info car_added_info">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            <strong>Congratulations!</strong>
-            The car was successfully added to the database :)
-        </div>
+
     </c:if>
+    <c:choose>
+        <c:when test="${param.car_added != null}">
+            <div class="alert alert-dismissible alert-info car_operation_messagebox">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong>Congratulations!</strong>
+                The car was successfully added to the database :)
+            </div>
+        </c:when>
+        <c:when test="${param.car_removed == 'true'}">
+            <div class="alert alert-dismissible alert-info car_operation_messagebox">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong>Congratulations!</strong>
+                The car was successfully removed from the database :)
+            </div>
+        </c:when>
+        <c:when test="${param.car_removed == 'false'}">
+            <div class="alert alert-dismissible alert-danger car_operation_messagebox">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong>Error!</strong>
+                The car was not removed from the database. Maybe it does not exist, or already removed.
+            </div>
+        </c:when>
+        <c:otherwise>
+            -
+        </c:otherwise>
+    </c:choose>
 
     <h1 class="text-center">Our Cars:</h1>
     <div class="txt">
