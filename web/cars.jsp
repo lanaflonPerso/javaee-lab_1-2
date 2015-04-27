@@ -1,0 +1,68 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>JavaEE lab2 - Servlets/JSP</title>
+    <meta name="author" content="Vadym Pechenoha">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="/" class="navbar-brand">Rent Car</a>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="/cars.jsp">Car List</a>
+                </li>
+                <li>
+                    <a href="/cars/add">Add New Car</a>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">About</a></li>
+                <li><a href="#">Help</a></li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+<div class="container main_container">
+    <h1 class="text-center">Our Cars:</h1>
+    <div class="txt">
+        <jsp:useBean id="model" class="lab2.CarModel" />
+        <table class="table table-striped table-hover ">
+            <thead>
+            <tr class="success">
+                <th>#</th>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Year</th>
+                <th>Max Speed</th>
+                <th>Price ($ / day)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach var="item" items="${model.cars}">
+            <tr>
+                <td>${item.id}</td>
+                <td>${item.brand}</td>
+                <td>${item.model}</td>
+                <td><c:out value="${item.year}" default="unknown" /></td>
+                <td><c:out value="${item.speed}" default="unknown" /></td>
+                <td><c:out value="${item.price}" default="unknown" /></td>
+            </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
