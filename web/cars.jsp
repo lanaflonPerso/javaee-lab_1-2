@@ -36,8 +36,17 @@
     </div>
 </div>
 <div class="container main_container">
+    <c:if test="${param.car_added != null}">
+        <div class="alert alert-dismissible alert-info car_added_info">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>Congratulations!</strong>
+            The car was successfully added to the database :)
+        </div>
+    </c:if>
+
     <h1 class="text-center">Our Cars:</h1>
     <div class="txt">
+        ${param.test}
         <jsp:useBean id="model" class="lab2.CarModel" />
         <table class="table table-striped table-hover ">
             <thead>
