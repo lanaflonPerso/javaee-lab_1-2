@@ -4,13 +4,15 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
     <servlet>
-        <servlet-name>CarList</servlet-name>
-        <servlet-class>lab2.CarList</servlet-class>
+        <servlet-name>AddCarAction</servlet-name>
+        <servlet-class>lab2.AddCarAction</servlet-class>
     </servlet>
+
     <servlet-mapping>
-        <servlet-name>CarList</servlet-name>
-        <url-pattern>/cars</url-pattern>
+        <servlet-name>AddCarAction</servlet-name>
+        <url-pattern>/add_car_action</url-pattern>
     </servlet-mapping>
+
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>
