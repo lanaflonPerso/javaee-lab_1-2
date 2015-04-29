@@ -1,4 +1,4 @@
-# Java EE - two labs
+# Java EE - two labs (JDBC, Servlets, JSP)
 <b>Lab 1:</b><br>
 <i>Working with JDBC:</i>
 choose a subject area and implement DAO pattern for its objects to interact with the database. Write unit tests.<br>
@@ -6,4 +6,4 @@ choose a subject area and implement DAO pattern for its objects to interact with
 <i>Working with Servlets and JSP:</i>
 create web-project which should implement CRUD operations for objects from chosen subject area. Use CSS-bootstrap template for user friendly GUI.<br>
 <b>Chosen area:</b><br>
-company, which allows us to rent the cars.
+Company, which allows us to rent the cars.
