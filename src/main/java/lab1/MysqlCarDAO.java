@@ -10,11 +10,9 @@ import java.util.List;
  */
 public class MysqlCarDAO implements CarDAO {
 
-    private final String URL      = "jdbc:mysql://localhost:3306/car_project";
-    private final String USERNAME = "root";
-    private final String PASSWORD = "11111111";
-
-    private ResultSet rs;
+    private static final String URL      = "jdbc:mysql://localhost:3306/car_project";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "11111111";
 
     private Connection getConnection() {
         Connection connection;
@@ -72,8 +70,9 @@ public class MysqlCarDAO implements CarDAO {
     public Car read(int id) {
         Connection connection = null;
         PreparedStatement pStatement = null;
-
+        ResultSet rs;
         Car car = null;
+
         String sql = "SELECT * FROM car WHERE id=?";
         try {
             connection = this.getConnection();
@@ -154,6 +153,7 @@ public class MysqlCarDAO implements CarDAO {
     public List<Car> getAll() {
         Connection connection = null;
         PreparedStatement pStatement = null;
+        ResultSet rs;
         List<Car> cars = new ArrayList<>();
 
         try {
