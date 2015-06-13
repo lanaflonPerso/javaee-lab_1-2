@@ -1,15 +1,17 @@
-package lab1_tests;
-
-import lab1.*;
+import lab1.Car;
+import lab1.DBException;
+import lab1.MysqlCarDAO;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.sql.Connection;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class Tests {
     private static MysqlCarDAO dao;

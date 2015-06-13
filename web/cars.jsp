@@ -58,9 +58,6 @@
                 The car was not removed from the database. Maybe it does not exist, or already removed.
             </div>
         </c:when>
-        <c:otherwise>
-            -
-        </c:otherwise>
     </c:choose>
 
     <h1 class="text-center">Our Cars:</h1>
